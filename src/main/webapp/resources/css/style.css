@@ -1112,6 +1112,24 @@ body.index #main {
 }
 
 .text-center{
-
 	text-align: center;
+}
+
+.alert {
+	max-width: 70%;
+	height: 2em;
+	margin: 0.75em auto;
+	color: white;
+	font-size: 15pt;
+	font-weight: 400;
+	font-family: 'Lato', sans-serif;
+
+}
+
+.alert-success {
+	background-color: #83D3A5;
+}
+
+.alert-fail {
+	background-color: #ff6f6f;
 }
