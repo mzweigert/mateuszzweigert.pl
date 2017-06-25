@@ -15,9 +15,9 @@
                 <li><a href="https://github.com/mzweigert" class="icon circle fa-github"><span class="label">Github</span></a></li>
             </ul>
             <ul class="icons">
-                <li><a href="/skills"><span class="label" th:text="#{view.index.skills}"></span></a></li>
-                <li><a href="/projects"><span class="label" th:text="#{view.index.projects}">My projects</span></a></li>
-                <li><a href="/contact" ><span class="label" th:text="#{view.index.contact}">Contact</span></a></li>
+                <li><a th:href="@{${routes.skills}}"><span class="label" th:text="#{view.index.skills}"></span></a></li>
+                <li><a th:href="@{${routes.projects}}"><span class="label" th:text="#{view.index.projects}"></span></a></li>
+                <li><a th:href="@{${routes.contact}}" ><span class="label" th:text="#{view.index.contact}"></span></a></li>
             </ul>
             <ul class="copyright">
                 <li th:text="#{view.index.copyright}"></li>

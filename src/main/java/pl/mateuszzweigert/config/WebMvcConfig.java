@@ -8,10 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
@@ -21,11 +25,12 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import java.util.Locale;
+
 @Configuration
 class WebMvcConfig extends WebMvcConfigurationSupport {
 
-    private static final String MESSAGE_SOURCE_EN = "/WEB-INF/i18n/messages";
-    private static final String MESSAGE_SOURCE_PL = "/WEB-INF/i18n/messages_pl";
+    private static final String MESSAGE_SOURCE = "/WEB-INF/i18n/messages";
     private static final String VIEWS = "/WEB-INF/views/";
 
     private static final String RESOURCES_LOCATION = "/resources/";
@@ -42,7 +47,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames(MESSAGE_SOURCE_EN, MESSAGE_SOURCE_PL);
+        messageSource.setBasename(MESSAGE_SOURCE);
         messageSource.setCacheSeconds(5);
         return messageSource;
     }
@@ -72,6 +77,13 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         thymeleafViewResolver.setTemplateEngine(templateEngine());
         thymeleafViewResolver.setCharacterEncoding("UTF-8");
         return thymeleafViewResolver;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+        interceptor.setParamName("locale");
+        registry.addInterceptor(interceptor);
     }
 
     @Override

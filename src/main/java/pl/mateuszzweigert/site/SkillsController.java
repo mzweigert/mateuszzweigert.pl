@@ -1,17 +1,22 @@
 package pl.mateuszzweigert.site;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.mateuszzweigert.site.model.LocaleRoutes;
 import pl.mateuszzweigert.site.support.web.Routes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Locale;
 
 @Controller
 public class SkillsController {
 
     @RequestMapping(value = Routes.SKILLS, method = RequestMethod.GET)
-    public String projects() {
+    public String projects(Locale locale, Model model, HttpServletRequest request) {
+        model.addAttribute("routes", new LocaleRoutes(locale, request.getRequestURI()));
         return "skills";
     }
 }

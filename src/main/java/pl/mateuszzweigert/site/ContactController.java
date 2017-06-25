@@ -7,11 +7,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.mateuszzweigert.site.model.LocaleRoutes;
 import pl.mateuszzweigert.site.model.Mail;
 import pl.mateuszzweigert.site.support.web.MailSender;
 import pl.mateuszzweigert.site.support.web.Routes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Locale;
 
 @Controller
 public class ContactController {
@@ -20,26 +23,24 @@ public class ContactController {
     private MailSender mailSender;
 
     @RequestMapping(value = Routes.CONTACT, method = RequestMethod.GET)
-    public String contactGet(Model model) {
+    public String contactGet(Locale locale, Model model, HttpServletRequest request) {
         model.addAttribute(new Mail());
+        model.addAttribute("routes", new LocaleRoutes(locale, request.getRequestURI()));
         return "contact";
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.POST)
     public String contactPost(@Valid @ModelAttribute(value = "mail") Mail mail,
                               BindingResult bindingResult,
-                              Model model) {
+                              Locale locale, Model model, HttpServletRequest request) {
 
+        model.addAttribute("routes", new LocaleRoutes(locale, request.getRequestURI()));
         if (bindingResult.hasErrors()){
             return "contact";
         }
 
         boolean sendResult = mailSender.sendMail(mail);
-        if(sendResult){
-            model.addAttribute("sendResult", true);
-        } else {
-            model.addAttribute("sendResult", false);
-        }
+        model.addAttribute("sendResult", sendResult);
         return "contact";
     }
 

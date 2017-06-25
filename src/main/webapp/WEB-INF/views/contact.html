@@ -17,8 +17,11 @@
     <!-- One -->
     <section class="wrapper style4 special container small">
 
-        <div class="alert alert-success" th:if="${sendResult}" th:text="#{view.contact.send.success}"></div>
-        <div class="alert alert-fail" th:if="${!sendResult}" th:text="#{view.contact.send.fail}"></div>
+        <div th:if="${sendResult != null}" th:remove="tag">
+            <div class="alert alert-success" th:if="${sendResult}" th:text="#{view.contact.send.success}"></div>
+            <div class="alert alert-fail" th:el="${!sendResult}" th:text="#{view.contact.send.fail}"></div>
+        </div>
+
 
 
         <div class="content">

@@ -30,9 +30,10 @@
             <nav id="nav">
                 <ul>
                     <li>
-                        <a href="/pl">
+                        <a th:href="${routes.currentPage}">
                             <text th:text="#{view.index.lang}"></text>
-                            <img src="/resources/images/pl.png">
+                            <img src="/resources/images/pl.png" th:if="${routes.lang.equals('en')}">
+                            <img src="/resources/images/en.png" th:if="${routes.lang.equals('pl')}">
                         </a>
                     </li>
                     <li><a href="/" th:text="#{view.index.welcome}"></a></li>
