@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{view.skills.title}"></title>
+    <meta th:replace="fragments/header :: head"/>
+    <script type="application/javascript" src="/resources/js/Chart.bundle.js"></script>
+    <script type="application/javascript" src="/resources/js/skillscharts.js"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<article id="main">
+    <header class="special container">
+        <span class="icon fa-terminal"></span>
+        <h2 th:text="#{view.skills.title}"></h2>
+    </header>
+
+    <!-- One -->
+    <section class="wrapper style3 container">
+
+        <div class="row">
+            <div class="4u">
+                <!-- Content -->
+                <div class="content">
+                    <div class="sidebar">
+                        <section>
+                            <h2 th:text="#{view.skills.chart.languages}"></h2>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="8u">
+                <div>
+                    <canvas id="languages"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="wrapper style3 container">
+        <div class="row">
+            <div class="8u">
+                <div>
+                    <canvas id="db-systems"></canvas>
+                </div>
+            </div>
+            <div class="4u">
+                <!-- Content -->
+                <div class="content">
+                    <div class="sidebar">
+                        <section>
+                            <h2 th:text="#{view.skills.chart.databases}"></h2>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="wrapper style3 container">
+
+        <div class="row">
+            <div class="4u">
+                <!-- Content -->
+                <div class="content">
+                    <div class="sidebar">
+                        <section>
+                            <h2 th:text="#{view.skills.chart.frameworks.cs}"></h2>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="8u">
+                <div>
+                    <canvas id="csframeworks"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="wrapper style3 container">
+        <div class="row">
+            <div class="8u">
+                <div>
+                    <canvas id="javaframeworks"></canvas>
+                </div>
+            </div>
+            <div class="4u">
+                <!-- Content -->
+                <div class="content">
+                    <div class="sidebar">
+                        <section>
+                            <h2 th:text="#{view.skills.chart.frameworks.java}"></h2>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="wrapper style3 container">
+        <div class="row">
+            <div class="4u">
+                <!-- Content -->
+                <div class="content">
+                    <div class="sidebar">
+                        <section>
+                            <h2 th:text="#{view.skills.chart.frameworks.web}"></h2>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="8u">
+                <div>
+                    <canvas id="jshcframeworks"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<div th:replace="fragments/footer :: footer" ></div>
+</body>
+</html>
