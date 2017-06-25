@@ -3,9 +3,16 @@
 <body>
     <div th:fragment="footer" th:remove="tag">
         <footer id="footer" th:fragment="footer" th:align="center">
+            <ul class="icons" th:if="${renderProjectsNav}">
+                <li><a href="#tap-the-dots" class="scrolly"><span class="label">Tap The Dots</span></a></li>
+                <li><a href="#frame-limiter" class="scrolly"><span class="label">Frame Limiter</span></a></li>
+                <li><a href="#library" class="scrolly"><span class="label">Library</span></a></li>
+                <li><a href="#computer-shop" class="scrolly"><span class="label">Computer shop</span></a></li>
+                <li><a href="#horse-competition" class="scrolly"><span class="label">Horse competitions</span></a></li>
+            </ul>
             <ul class="icons">
                 <li><a href="/my-skills"><span class="label" th:text="#{view.index.skills}"></span></a></li>
-                <li><a href="/my-projects"><span class="label" th:text="#{view.index.projects}">My projects</span></a></li>
+                <li><a href="/projects"><span class="label" th:text="#{view.index.projects}">My projects</span></a></li>
                 <li><a href="/contact" ><span class="label" th:text="#{view.index.contact}">Contact</span></a></li>
             </ul>
             <ul class="copyright">

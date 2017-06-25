@@ -1,4 +1,4 @@
-package pl.mateuszzweigert.site.myprojects;
+package pl.mateuszzweigert.site.projects;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

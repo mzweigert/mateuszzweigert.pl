@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head" th:remove="tag">
     <title>Welcome</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -40,9 +39,9 @@
                     <li class="submenu">
                         <a href="">Menu</a>
                         <ul>
-                            <li><a href="/my-skills" th:text="#{view.index.skills}">My skills</a></li>
-                            <li><a href="/my-projects" th:text="#{view.index.projects}">My projects</a></li>
-                            <li><a href="/contact" th:text="#{view.index.contact}">Contact</a></li>
+                            <li><a href="/skills" th:text="#{view.index.skills}"></a></li>
+                            <li><a href="/projects" th:text="#{view.index.projects}"></a></li>
+                            <li><a href="/contact" th:text="#{view.index.contact}"></a></li>
                         </ul>
                     </li>
                 </ul>

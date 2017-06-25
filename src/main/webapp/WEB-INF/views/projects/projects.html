@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{view.index.title}"></title>
+    <meta th:replace="fragments/header :: head"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<article id="main">
+
+    <header class="special container">
+        <span class="icon fa-laptop"></span>
+        <h2 th:text="#{view.projects.title}"></h2>
+    </header>
+    <!-- One -->
+    <section id="tap-the-dots" class="wrapper style3 container">
+        <div class="row oneandhalf">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <section>
+                        <header>
+                            <h3 th:text="#{view.projects.tapthedots.title}"></h3>
+                        </header>
+                        <p th:text="#{view.projects.tapthedots.desc}">
+                        </p>
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="https://play.google.com/store/apps/details?id=com.zwege.tapthedots"
+                                       class="button special small" th:text="#{view.projects.seeingp}"></a></li>
+                            </ul>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+            <div class="8u">
+                <!-- Content -->
+                <div class="content">
+                    <section>
+                        <div class="image featured"><img src="/resources/images/tapthedots.png" alt="" /></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="frame-limiter" class="wrapper style3 container">
+        <div class="row oneandhalf">
+            <div class="8u">
+                <!-- Content -->
+                <div class="content">
+                    <section>
+                        <div class="image featured"><img src="/resources/images/frame-limiter.png" alt="" /></div>
+                    </section>
+                </div>
+            </div>
+            <div class="4u">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <section>
+                        <header>
+                            <h3 th:text="#{view.projects.framelimiter.title}"></h3>
+                        </header>
+                        <p>
+                            <text th:text="#{view.projects.framelimiter.desc_1}"></text>
+                            <a href="https://github.com/mzweigert/Frame-Limiter/blob/master/Frame_Limiter_%200.2/FrameLimiter.apk"
+                                th:text="#{view.projects.framelimiter.download}"> </a>
+                            <text th:text="#{view.projects.framelimiter.desc_2}"></text>
+                        </p>
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="https://github.com/mzweigert/Frame-Limiter" class="button special small"
+                                       th:text="#{view.projects.seemore}"></a></li>
+
+                            </ul>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="library" class="wrapper style3 container">
+        <div class="row oneandhalf">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <section>
+                        <header>
+                            <h3 th:text="#{view.projects.library.title}">Library</h3>
+                        </header>
+                        <p th:text="#{view.projects.library.desc}">
+                        </p>
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="https://github.com/mzweigert/Library-JPA-EJB-JERSEY" class="button special small"
+                                       th:text="#{view.projects.seemore}"></a></li>
+                            </ul>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+            <div class="8u">
+                <!-- Content -->
+                <div class="content">
+                    <section>
+                        <div class="image featured"><img src="/resources/images/library.png" alt="" /></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="computer-shop" class="wrapper style3 container">
+        <div class="row oneandhalf">
+            <div class="8u">
+                <!-- Content -->
+                <div class="content">
+                    <section>
+                        <div class="image featured"><img src="/resources/images/computershop.png" alt="" /></div>
+                    </section>
+                </div>
+            </div>
+            <div class="4u">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <section>
+                        <header>
+                            <h3 th:text="#{view.projects.computershop.title}">Computer shop</h3>
+                        </header>
+                        <p th:text="#{view.projects.computershop.desc}"></p>
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="https://github.com/mzweigert/ComputerShop" class="button special small"
+                                       th:text="#{view.projects.seemore}"></a></li>
+                            </ul>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="horse-competition" class="wrapper style3 container">
+        <div class="row oneandhalf">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <section>
+                        <header>
+                            <h3 th:text="#{view.projects.horsecomp.title}"></h3>
+                        </header>
+                        <p th:text="#{view.projects.horsecomp.desc}">
+                        </p>
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="https://github.com/mzweigert/Zawody-konne" class="button special small"
+                                       th:text="#{view.projects.seemore}"></a></li>
+                            </ul>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+            <div class="8u">
+                <!-- Content -->
+                <div class="content">
+                    <section>
+                        <div class="image featured"><img src="/resources/images/zawodykonne.png" alt="" /></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<div th:replace="fragments/footer :: footer(renderProjectsNav = true)" ></div>
+</body>
+</html>
