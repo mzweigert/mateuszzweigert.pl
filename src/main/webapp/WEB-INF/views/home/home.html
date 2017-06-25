@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{view.index.title}"></title>
+    <meta th:replace="fragments/header :: head"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+
+    <section id="banner">
+        <div class="inner">
+            <header>
+                <h2 th:text="#{view.index.title}"></h2>
+            </header>
+            <footer>
+                <ul class="buttons vertical">
+                    <li><a href="#main" class="button scrolly" th:text="#{view.index.about_me}"></a></li>
+                </ul>
+            </footer>
+        </div>
+    </section>
+
+    <article id="main" class="text-center">
+        <header class="special container">
+            <span class="icon fa-home"></span>
+
+        </header>
+        <section class="wrapper style2 container special-alt">
+            <header>
+                <h2 th:text="#{view.index.desc.header}"></h2>
+            </header>
+            <div class="row oneandhalf">
+                <div class="8u">
+
+                    <!-- Sidebar -->
+                    <div class="sidebar">
+                        <section>
+                            <p>
+                                <text th:text="#{view.index.desc.about_me_1}"></text>
+                                <a href="https://unity3d.com/"><strong th:text="#{view.index.unity3D}"></strong> </a>
+                                <text th:text="#{view.index.desc.about_me_2}"></text>
+                                <br>
+                                <text th:text="#{view.index.desc.prog_lang}"></text>
+                                <a href="http://www.oracle.com/technetwork/java/index.html"><strong th:text="#{view.index.java}"></strong>, </a>
+                                <a href="https://msdn.microsoft.com/pl-pl/library/kx37x362.aspx"><strong th:text="#{view.index.cs}"></strong>, </a>
+                                <a href="http://www.w3schools.com/js/default.asp"><strong th:text="#{view.index.javascript}"></strong>.</a>
+                                <text th:text="#{view.index.desc.sports}"></text>
+                                <text th:text="#{view.index.desc.checkout}"></text>
+                                <a href="/projects"><strong th:text="#{view.index.desc.projects}"></strong></a>
+                                <text th:text="#{view.index.and}"></text>
+                                <a href="/skills"><strong th:text="#{view.index.desc.skills}"></strong></a>
+                            </p>
+
+                        </section>
+                    </div>
+                </div>
+                <div class="4u">
+                    <!-- Content -->
+                    <div class="content">
+                        <section>
+                            <div class="image featured"><img src="/resources/images/me.jpg" alt="" /></div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <!-- CTA -->
+    <section id="cta">
+
+        <header>
+            <h2 th:text="#{view.index.visit_me}">Visit me on</h2>
+        </header>
+        <footer>
+            <ul class="buttons">
+                <li><a href="https://github.com/mzweigert" class="button special" th:text="#{view.index.github}"></a></li>
+                <li><a href="https://www.facebook.com/mateusz.zweigert" class="button" th:text="#{view.index.facebook}"></a></li>
+            </ul>
+        </footer>
+
+    </section>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

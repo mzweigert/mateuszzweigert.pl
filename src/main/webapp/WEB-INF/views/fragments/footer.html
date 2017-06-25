@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="footer" th:remove="tag">
+        <footer id="footer" th:fragment="footer" th:align="center">
+            <ul class="icons">
+                <li><a href="/my-skills"><span class="label" th:text="#{view.index.skills}"></span></a></li>
+                <li><a href="/my-projects"><span class="label" th:text="#{view.index.projects}">My projects</span></a></li>
+                <li><a href="/contact" ><span class="label" th:text="#{view.index.contact}">Contact</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li th:text="#{view.index.copyright}"></li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
+
