@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{view.contact.title}"></title>
+    <meta th:replace="fragments/header :: head"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<article id="main">
+
+    <header class="special container">
+        <span class="icon fa-envelope"></span>
+        <h2 th:text="#{view.contact.title}"></h2>
+    </header>
+
+    <!-- One -->
+    <section class="wrapper style4 special container small">
+
+        <div class="alert alert-success" th:if="${sendResult}" th:text="#{view.contact.send.success}"></div>
+        <div class="alert alert-fail" th:if="${!sendResult}" th:text="#{view.contact.send.fail}"></div>
+
+
+        <div class="content">
+            <form action="#" th:action="@{/contact}" th:object="${mail}" method="post">
+                <div class="row half collapse-at-2">
+                    <div class="6u">
+                        <input type="text" maxlength="15" id="name" th:field="*{name}" th:placeholder="#{view.contact.form.name}" />
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:text="#{view.contact.form.valid.name}"></p>
+                    </div>
+                    <div class="6u">
+                        <input type="text" maxlength="35" id="email" th:field="*{email}" th:placeholder="#{view.contact.form.email}" />
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:text="#{view.contact.form.valid.email}"></p>
+                    </div>
+                </div>
+                <div class="row half">
+                    <div class="12u">
+                        <input type="text" maxlength="35" id="subject" th:field="*{subject}" th:placeholder="#{view.contact.form.subject}"/>
+                        <p th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" th:text="#{view.contact.form.valid.subject}"></p>
+                    </div>
+                </div>
+                <div class="row half">
+                    <div class="12u">
+                        <textarea style="resize:none"  maxlength="800" th:field="*{content}" th:placeholder="#{view.contact.form.content}" id="message" rows="7"></textarea>
+                        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" th:text="#{view.contact.form.valid.content}"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="12u">
+                        <ul class="buttons">
+                            <li><input id="send-email" type="submit" class="special" th:value="#{view.contact.form.sendbutton}" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</article>
+
+<div th:replace="fragments/footer :: footer" ></div>
+</body>
+</html>
+
