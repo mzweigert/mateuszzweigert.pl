@@ -7,14 +7,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.mateuszzweigert.site.model.LocaleRoutes;
 import pl.mateuszzweigert.site.model.Mail;
 import pl.mateuszzweigert.site.support.web.MailSender;
 import pl.mateuszzweigert.site.support.web.Routes;
+import pl.mateuszzweigert.site.support.web.Views;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Locale;
 
 @Controller
 public class ContactController {
@@ -23,25 +21,22 @@ public class ContactController {
     private MailSender mailSender;
 
     @RequestMapping(value = Routes.CONTACT, method = RequestMethod.GET)
-    public String contactGet(Locale locale, Model model, HttpServletRequest request) {
+    public String contactGet(Model model) {
         model.addAttribute(new Mail());
-        model.addAttribute("routes", new LocaleRoutes(locale, request.getRequestURI()));
-        return "contact";
+        return Views.CONTACT_VIEW;
     }
 
-    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+    @RequestMapping(value = Routes.CONTACT, method = RequestMethod.POST)
     public String contactPost(@Valid @ModelAttribute(value = "mail") Mail mail,
-                              BindingResult bindingResult,
-                              Locale locale, Model model, HttpServletRequest request) {
+                              BindingResult bindingResult, Model model) {
 
-        model.addAttribute("routes", new LocaleRoutes(locale, request.getRequestURI()));
-        if (bindingResult.hasErrors()){
-            return "contact";
+        if (bindingResult.hasErrors()) {
+            return Views.CONTACT_VIEW;
         }
 
         boolean sendResult = mailSender.sendMail(mail);
         model.addAttribute("sendResult", sendResult);
-        return "contact";
+        return Views.CONTACT_VIEW;
     }
 
 }

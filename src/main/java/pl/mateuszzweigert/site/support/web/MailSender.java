@@ -16,16 +16,16 @@ public class MailSender {
     @Autowired
     public JavaMailSender javaMailSender;
 
-    public boolean sendMail(Mail mail){
+    public boolean sendMail(Mail mail) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mail.getEmail());
         message.setTo(USERNAME);
         message.setSubject(mail.getSubject());
         message.setText(getText(mail));
-        try{
+        try {
             javaMailSender.send(message);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

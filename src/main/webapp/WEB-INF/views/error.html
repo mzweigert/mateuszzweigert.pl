@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{view.error.title}"></title>
+    <meta th:replace="fragments/header :: head"/>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header">&nbsp;</div>
+    <div th:replace="fragments/alert :: alert (message=${errorMessage})">Error: Error</div>
+    <div th:include="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

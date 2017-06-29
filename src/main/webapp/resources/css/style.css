@@ -1130,6 +1130,11 @@ body.index #main {
 	background-color: #83D3A5;
 }
 
-.alert-fail {
-	background-color: #ff6f6f;
+.alert-error {
+	background-color: #ebccd1;
 }
+
+.marginTop10{
+	margin-top: 10%;
+}
+

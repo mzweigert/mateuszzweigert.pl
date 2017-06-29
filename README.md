@@ -8,7 +8,6 @@
 ### TODO:
 
 * Better validation message on email form
-* Locale handling
 * Error or page not found controlling
 
 #### Run from command line:

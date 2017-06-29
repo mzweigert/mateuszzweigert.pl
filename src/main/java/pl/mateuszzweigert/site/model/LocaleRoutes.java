@@ -13,8 +13,8 @@ public class LocaleRoutes {
     private String projects;
     private String contact;
 
-    private static final String LOCALE_EN_PARAM =  "?locale=en";
-    private static final String LOCALE_PL_PARAM =  "?locale=pl";
+    private static final String LOCALE_EN_PARAM = "?locale=en";
+    private static final String LOCALE_PL_PARAM = "?locale=pl";
 
     public LocaleRoutes(Locale locale, String currentPage) {
         this.lang = locale.getLanguage();
@@ -23,7 +23,7 @@ public class LocaleRoutes {
         this.home = Routes.HOME_1 + langUrl;
         this.skills = Routes.SKILLS + langUrl;
         this.projects = Routes.PROJECTS + langUrl;
-        this.contact =  Routes.CONTACT + langUrl;
+        this.contact = Routes.CONTACT + langUrl;
     }
 
     public String getLang() {
