@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.mateuszzweigert.site.support.web.Routes;
-import pl.mateuszzweigert.site.support.web.Views;
+import pl.mateuszzweigert.site.common.Routes;
+import pl.mateuszzweigert.site.common.Views;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;

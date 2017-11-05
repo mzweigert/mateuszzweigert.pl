@@ -1117,7 +1117,7 @@ body.index #main {
 
 .alert {
 	max-width: 70%;
-	height: 2em;
+	min-height: 2em;
 	margin: 0.75em auto;
 	color: white;
 	font-size: 15pt;
@@ -1138,3 +1138,12 @@ body.index #main {
 	margin-top: 10%;
 }
 
+.fieldWithoutError {
+	padding-bottom: 40px;
+}
+
+.errorField {
+	background-color: #ebccd1;
+	height: 30px;
+	margin: 5px 0 5px 0;
+}

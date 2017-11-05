@@ -1,6 +1,6 @@
 package pl.mateuszzweigert.site.model;
 
-import pl.mateuszzweigert.site.support.web.Routes;
+import pl.mateuszzweigert.site.common.Routes;
 
 import java.util.Locale;
 

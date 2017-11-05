@@ -1,10 +1,10 @@
-package pl.mateuszzweigert.site.support.web;
+package pl.mateuszzweigert.site.common;
 
 import com.google.common.base.Throwables;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import pl.mateuszzweigert.site.model.LocaleRoutes;
-import pl.mateuszzweigert.site.support.web.Views;
+import pl.mateuszzweigert.site.common.Views;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;

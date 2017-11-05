@@ -1,4 +1,4 @@
-package pl.mateuszzweigert.site.support.web;
+package pl.mateuszzweigert.site.common;
 
 public class Routes {
     public static final String HOME_1 = "/home";

@@ -1,4 +1,4 @@
-package pl.mateuszzweigert.site.support.web;
+package pl.mateuszzweigert.site.common;
 
 public class Views {
     public static final String HOME_VIEW = "home";

@@ -1,21 +1,25 @@
 package pl.mateuszzweigert.site.model;
 
+import org.hibernate.validator.constraints.Email;
+import pl.mateuszzweigert.site.common.MessagesValidate;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class Mail {
 
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = MessagesValidate.NOT_BLANK_MESSAGE)
+    @Size(min = 3, max = 15, message = MessagesValidate.SIZE_MESSAGE)
     private String name;
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = MessagesValidate.NOT_BLANK_MESSAGE)
+    @Size(min = 3, max = 35, message = MessagesValidate.SIZE_MESSAGE)
     private String subject;
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = MessagesValidate.NOT_BLANK_MESSAGE)
+    @Size(min = 3, max = 35, message = MessagesValidate.SIZE_MESSAGE)
+    @Email(message = MessagesValidate.EMAIL_VALIDATE)
     private String email;
-    @NotNull
-    @Size(min = 10)
+    @NotNull(message = MessagesValidate.NOT_BLANK_MESSAGE)
+    @Size(min = 10, max = 800, message = MessagesValidate.SIZE_MESSAGE)
     private String content;
 
     public String getName() {

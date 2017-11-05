@@ -19,33 +19,36 @@
 
         <div th:if="${sendResult != null}" th:remove="tag">
             <div class="alert alert-success" th:if="${sendResult}" th:text="#{view.contact.send.success}"></div>
-            <div class="alert alert-error" th:el="${!sendResult}" th:text="#{view.contact.send.fail}"></div>
+            <div class="alert alert-error" th:if="${!sendResult}" th:text="#{view.contact.send.fail}"></div>
         </div>
 
 
 
         <div class="content">
             <form action="#" th:action="@{/contact}" th:object="${mail}" method="post">
-                <div class="row half collapse-at-2">
-                    <div class="6u">
+                <div class="row half collapse-at-2s"
+                     th:classappend="${(#fields.hasErrors('name') or #fields.hasErrors('email')) ? 'fieldWithError': 'fieldWithoutError'}">
+                    <div class="6u" >
                         <input type="text" maxlength="15" id="name" th:field="*{name}" th:placeholder="#{view.contact.form.name}" />
-                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:text="#{view.contact.form.valid.name}"></p>
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="${mail.name}" th:class="errorField"></p>
                     </div>
                     <div class="6u">
                         <input type="text" maxlength="35" id="email" th:field="*{email}" th:placeholder="#{view.contact.form.email}" />
-                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:text="#{view.contact.form.valid.email}"></p>
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="${mail.email}" th:class="errorField"></p>
                     </div>
                 </div>
-                <div class="row half">
+                <div class="row half"
+                     th:classappend="${#fields.hasErrors('subject') ? 'fieldWithError': 'fieldWithoutError'}">
                     <div class="12u">
                         <input type="text" maxlength="35" id="subject" th:field="*{subject}" th:placeholder="#{view.contact.form.subject}"/>
-                        <p th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" th:text="#{view.contact.form.valid.subject}"></p>
+                        <p th:if="${#fields.hasErrors('subject')}" th:errors="${mail.subject}" th:class="errorField"></p>
                     </div>
                 </div>
-                <div class="row half">
+                <div class="row half"
+                     th:classappend="${#fields.hasErrors('content') ? 'fieldWithError': 'fieldWithoutError'}">
                     <div class="12u">
                         <textarea style="resize:none"  maxlength="800" th:field="*{content}" th:placeholder="#{view.contact.form.content}" id="message" rows="7"></textarea>
-                        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" th:text="#{view.contact.form.valid.content}"></p>
+                        <p th:if="${#fields.hasErrors('content')}" th:errors="${mail.content}" th:class="errorField"></p>
                     </div>
                 </div>
                 <div class="row">
