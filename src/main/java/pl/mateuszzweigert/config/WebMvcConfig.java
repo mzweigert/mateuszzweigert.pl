@@ -1,5 +1,7 @@
 package pl.mateuszzweigert.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,43 +10,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
-import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
-import pl.mateuszzweigert.site.support.web.Interceptor;
-
-import java.util.Locale;
+import pl.mateuszzweigert.site.support.web.RequestInterceptor;
 
 @Configuration
-class WebMvcConfig extends WebMvcConfigurationSupport {
+class WebMvcConfig implements WebMvcConfigurer {
 
     private static final String MESSAGE_SOURCE = "/WEB-INF/i18n/messages";
     private static final String VIEWS = "/WEB-INF/views/";
 
     private static final String RESOURCES_LOCATION = "/resources/";
     private static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
-
-    @Override
-    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-        RequestMappingHandlerMapping requestMappingHandlerMapping = super.requestMappingHandlerMapping();
-        requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
-        requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
-        return requestMappingHandlerMapping;
-    }
 
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
@@ -68,8 +51,6 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
-        templateEngine.addDialect(new SpringSecurityDialect());
-        templateEngine.addDialect(new Java8TimeDialect());
         return templateEngine;
     }
 
@@ -86,8 +67,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
         interceptor.setParamName("locale");
         registry.addInterceptor(interceptor);
-        HandlerInterceptor handlerInterceptor = new Interceptor();
-        registry.addInterceptor(handlerInterceptor);
+        registry.addInterceptor(new RequestInterceptor());
     }
 
     @Override

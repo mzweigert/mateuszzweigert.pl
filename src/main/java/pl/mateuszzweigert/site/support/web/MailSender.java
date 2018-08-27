@@ -34,7 +34,7 @@ public class MailSender {
     private String getText(Mail mail) {
 
         return new StringBuilder()
-                .append("You have recieved mail from your page, from :")
+                .append("You have received mail from your page, from :")
                 .append(mail.getName())
                 .append(", ")
                 .append(mail.getEmail())

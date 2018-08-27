@@ -7,5 +7,5 @@ public class Routes {
     public static final String SKILLS = "/skills";
     public static final String PROJECTS = "/projects";
     public static final String CONTACT = "/contact";
-    public static final String ERROR = "/generalError";
+    public static final String ERROR = "/error";
 }
