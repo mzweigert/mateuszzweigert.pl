@@ -35,23 +35,12 @@
 
                     <!-- Sidebar -->
                     <div class="sidebar">
-                        <section>
-                            <p>
-                                <text th:text="#{view.index.desc.about_me_1}"></text>
-                                <a href="https://unity3d.com/"><strong th:text="#{view.index.unity3D}"></strong> </a>
-                                <text th:text="#{view.index.desc.about_me_2}"></text>
-                                <br>
-                                <text th:text="#{view.index.desc.prog_lang}"></text>
-                                <a href="http://www.oracle.com/technetwork/java/index.html"><strong th:text="#{view.index.java}"></strong>, </a>
-                                <a href="https://msdn.microsoft.com/pl-pl/library/kx37x362.aspx"><strong th:text="#{view.index.cs}"></strong>, </a>
-                                <a href="http://www.w3schools.com/js/default.asp"><strong th:text="#{view.index.javascript}"></strong>.</a>
-                                <text th:text="#{view.index.desc.sports}"></text>
-                                <text th:text="#{view.index.desc.checkout}"></text>
-                                <a href="/projects"><strong th:text="#{view.index.desc.projects}"></strong></a>
-                                <text th:text="#{view.index.and}"></text>
-                                <a href="/skills"><strong th:text="#{view.index.desc.skills}"></strong></a>
-                            </p>
-
+                        <section class="aboutMe">
+                            <text th:text="#{view.index.desc.about_me}"></text>
+                            <text th:text="#{view.index.desc.checkout}"></text>
+                            <a href="/projects"><strong th:text="#{view.index.desc.projects}"></strong></a>
+                            <text th:text="#{view.index.and}"></text>
+                            <a href="/skills"><strong th:text="#{view.index.desc.skills}"></strong></a>
                         </section>
                     </div>
                 </div>
@@ -59,7 +48,7 @@
                     <!-- Content -->
                     <div class="content">
                         <section>
-                            <div class="image featured"><img src="/resources/images/me.jpg" alt="" /></div>
+                            <div class="image featured"><img src="/resources/images/me.png" alt="" /></div>
                         </section>
                     </div>
                 </div>
@@ -75,8 +64,9 @@
         </header>
         <footer>
             <ul class="buttons">
-                <li><a href="https://github.com/mzweigert" class="button special" th:text="#{view.index.github}"></a></li>
                 <li><a href="https://www.facebook.com/mateusz.zweigert" class="button" th:text="#{view.index.facebook}"></a></li>
+                <li><a href="https://github.com/mzweigert" class="button special" th:text="#{view.index.github}"></a></li>
+                <li><a href="https://pl.linkedin.com/in/mateusz-zweigert-660606123" class="button" th:text="#{view.index.linkedIn}"></a></li>
             </ul>
         </footer>
 

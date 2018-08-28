@@ -10,7 +10,7 @@ import pl.mateuszzweigert.site.common.Views;
 public class SkillsController {
 
     @RequestMapping(value = Routes.SKILLS, method = RequestMethod.GET)
-    public String projects() {
+    public String skills() {
         return Views.SKILLS_VIEW;
     }
 }

@@ -7,12 +7,11 @@
 
 ### TODO:
 
-* Better validation message on email form
-* Error or page not found controlling
+* experience page
 
 #### Run from command line:
 
-`mvn tomcat7:run`
+`mvn spring-boot:run`
 
-#### Default app port : 8080
-`http:localhost:8080`
+#### Default app port : 80
+`http:localhost:80`

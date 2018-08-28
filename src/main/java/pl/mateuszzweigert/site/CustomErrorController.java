@@ -2,12 +2,14 @@ package pl.mateuszzweigert.site;
 
 import com.google.common.base.Throwables;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pl.mateuszzweigert.site.common.Routes;
 import pl.mateuszzweigert.site.common.Views;
 
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;
 
 @Controller
-class CustomErrorController {
+class CustomErrorController implements ErrorController {
 
     @Autowired
     private MessageSource messageSource;
@@ -27,7 +29,7 @@ class CustomErrorController {
      * Display an error page, as defined in web.xml <code>custom-error</code> element.
      */
     @RequestMapping(Routes.ERROR)
-    public String generalError(HttpServletRequest request, Model model) {
+    public String error(HttpServletRequest request, Model model) {
         // retrieve some useful information from the request
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
@@ -58,5 +60,10 @@ class CustomErrorController {
         }
 
         return null;
+    }
+
+    @Override
+    public String getErrorPath() {
+        return Routes.ERROR;
     }
 }

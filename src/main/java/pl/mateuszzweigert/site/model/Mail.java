@@ -1,8 +1,8 @@
 package pl.mateuszzweigert.site.model;
 
-import org.hibernate.validator.constraints.Email;
 import pl.mateuszzweigert.site.common.MessagesValidate;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

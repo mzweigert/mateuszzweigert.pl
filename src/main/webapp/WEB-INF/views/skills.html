@@ -3,8 +3,8 @@
 <head>
     <title th:text="#{view.skills.title}"></title>
     <meta th:replace="fragments/header :: head"/>
-    <script type="application/javascript" src="/resources/js/Chart.bundle.js"></script>
-    <script type="application/javascript" src="/resources/js/skillscharts.js"></script>
+    <script type="application/javascript" src="/resources/js/chart/Chart.bundle.js"></script>
+    <script type="application/javascript" src="/resources/js/chart/skillscharts.js"></script>
 </head>
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="8u">
                 <div>
-                    <canvas id="db-systems"></canvas>
+                    <canvas id="dbLanguages"></canvas>
                 </div>
             </div>
             <div class="4u">
@@ -56,30 +56,10 @@
         </div>
     </section>
     <section class="wrapper style3 container">
-
-        <div class="row">
-            <div class="4u">
-                <!-- Content -->
-                <div class="content">
-                    <div class="sidebar">
-                        <section>
-                            <h2 th:text="#{view.skills.chart.frameworks.cs}"></h2>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <div class="8u">
-                <div>
-                    <canvas id="csframeworks"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="wrapper style3 container">
         <div class="row">
             <div class="8u">
                 <div>
-                    <canvas id="javaframeworks"></canvas>
+                    <canvas id="javaFrameworks"></canvas>
                 </div>
             </div>
             <div class="4u">
@@ -101,14 +81,14 @@
                 <div class="content">
                     <div class="sidebar">
                         <section>
-                            <h2 th:text="#{view.skills.chart.frameworks.web}"></h2>
+                            <h2 th:text="#{view.skills.chart.frameworks.java.test}"></h2>
                         </section>
                     </div>
                 </div>
             </div>
             <div class="8u">
                 <div>
-                    <canvas id="jshcframeworks"></canvas>
+                    <canvas id="javaTestLibraries"></canvas>
                 </div>
             </div>
         </div>

@@ -117,10 +117,9 @@ var createRadar = function(label, labels, data) {
 };
 
 $(function(){
-    new Chart($('#languages'), createRadar('Languages skills',   ["C#", "Java", "SQL", "HTML5", "CSS3", "JavaScript"],  [4.5, 4.5, 4, 4, 3.5, 4]));
-    new Chart($('#db-systems'), createPolar('Database systems skills',   ["MSSQL", "PostgreSQL", "MongoDB"],  [4, 3, 4]));
-    new Chart($('#csframeworks'), createPie('C# frameworks knowledge',   ["ASP.NET MVC", "ASP.NET WEB Api", "MVVM Light", "Unity3D"],  [4, 3.5, 3.5, 4.5], ["red", "green", "blue", "cyan"]));
-    new Chart($('#javaframeworks'), createPie('Java frameworks knowledge',   ["JEE", "Hibernate", "Spring boot", "Jersey"],  [4.5, 4.5, 3.5, 4], ["yellow", "gray", "brown", "orange"]));
-    new Chart($('#jshcframeworks'), createPie('JS/HTML5/CSS frameworks knowledge',   ["jQuery", "Node express", "Bootstrap", "mongoose", "underscore.js"],  [4.5, 4.5, 3.5, 4, 3.5], ["pink", "silver", "purple", "chartreuse", "firebrick"]));
+    new Chart($('#languages'), createRadar('Languages skills',   ["Java", "C#", "JavaScript", "HTML5", "CSS3", ],  [4.5, 4.0, 4, 4, 4]));
+    new Chart($('#dbLanguages'), createPolar('Database language skills',   ["MSSQL", "PostgreSQL", "MongoDB"],  [4.5, 3.5, 3.5]));
+    new Chart($('#javaFrameworks'), createPie('Java frameworks knowledge',   ["JEE", "Hibernate", "Spring boot", "Jersey"],  [4.5, 4.5, 3.5, 4], ["yellow", "gray", "brown", "orange"]));
+    new Chart($('#javaTestLibraries'), createPie('Java test libraries',   ["JUnit", "Mockito", "Arquillian"],  [4.5, 4.5, 4.0], ["purple", "chartreuse", "firebrick"]));
 
 });
