@@ -1,10 +1,17 @@
 package pl.mateuszzweigert.site.model;
 
+import com.google.common.collect.Lists;
 import pl.mateuszzweigert.site.common.Routes;
 
+import java.util.List;
 import java.util.Locale;
 
 public class LocaleRoutes {
+
+    private static final String LOCALE_PARAM = "?locale=";
+    private static final List<String> supportedLanguages = Lists.newArrayList(
+            "pl", "en"
+    );
 
     private String currentPage;
     private String lang;
@@ -13,17 +20,30 @@ public class LocaleRoutes {
     private String projects;
     private String contact;
 
-    private static final String LOCALE_EN_PARAM = "?locale=en";
-    private static final String LOCALE_PL_PARAM = "?locale=pl";
-
     public LocaleRoutes(Locale locale, String currentPage) {
-        this.lang = locale.getLanguage();
-        String langUrl = this.lang.equals("pl") ? LOCALE_EN_PARAM : LOCALE_PL_PARAM;
+        this.lang = resolveLang(locale);
+        String langUrl = resolveUrl(this.lang);
         this.currentPage = currentPage + langUrl;
         this.home = Routes.HOME_1 + langUrl;
         this.skills = Routes.SKILLS + langUrl;
         this.projects = Routes.PROJECTS + langUrl;
         this.contact = Routes.CONTACT + langUrl;
+    }
+
+    private String resolveUrl(String lang) {
+        switch (lang) {
+            case "pl" :
+                return LOCALE_PARAM + "en";
+            case "en":
+            default:
+                return LOCALE_PARAM + "pl";
+        }
+    }
+
+    private String resolveLang(Locale locale) {
+        return supportedLanguages.contains(locale.getLanguage()) ?
+                locale.getLanguage() :
+                Locale.getDefault().getLanguage();
     }
 
     public String getLang() {
