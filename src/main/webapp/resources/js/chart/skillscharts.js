@@ -117,9 +117,9 @@ var createRadar = function(label, labels, data) {
 };
 
 $(function(){
+    new Chart($('#projectManagement'), createPie('Project management tools skills',   ["Git", "Maven", "Jira"], [4.0, 4.0, 3.5], ["red", "violet", "blue"]));
     new Chart($('#languages'), createRadar('Languages skills',   ["Java", "C#", "JavaScript", "HTML5", "CSS3", ],  [4.5, 4.0, 4, 4, 4]));
-    new Chart($('#dbLanguages'), createPolar('Database language skills',   ["MSSQL", "PostgreSQL", "MongoDB"],  [4.5, 3.5, 3.5]));
-    new Chart($('#javaFrameworks'), createPie('Java frameworks knowledge',   ["JEE", "Hibernate", "Spring boot", "Jersey"],  [4.5, 4.5, 3.5, 4], ["yellow", "gray", "brown", "orange"]));
-    new Chart($('#javaTestLibraries'), createPie('Java test libraries',   ["JUnit", "Mockito", "Arquillian"],  [4.5, 4.5, 4.0], ["purple", "chartreuse", "firebrick"]));
-
+    new Chart($('#dbLanguages'), createPie('Database language skills',   ["MSSQL", "Oracle", "PostgreSQL", "MongoDB"], [4.5, 4, 3.5, 3.5], ["darkred", "red", "SteelBlue", "ForestGreen" ]));
+    new Chart($('#javaFrameworks'), createRadar('Java frameworks knowledge',   ["JEE", "Hibernate", "Spring boot", "Spring", "RESTEasy"],  [4.5, 4.5, 3.5, 3.5, 4]));
+    new Chart($('#javaTestLibraries'), createPie('Java test libraries',   ["JUnit", "Mockito", "Arquillian"],  [4.5, 4.5, 4.0], ["Brown", "LimeGreen", "DimGray"]));
 });
