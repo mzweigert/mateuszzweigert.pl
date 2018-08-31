@@ -18,9 +18,10 @@
                 <li><a href="https://pl.linkedin.com/in/mateusz-zweigert-660606123" class="icon circle fa-linkedin"><span class="label">LinkedIn</span></a></li>
             </ul>
             <ul class="icons">
-                <li><a th:href="@{${routes.skills}}"><span class="label" th:text="#{view.index.skills}"></span></a></li>
-                <li><a th:href="@{${routes.projects}}"><span class="label" th:text="#{view.index.projects}"></span></a></li>
-                <li><a th:href="@{${routes.contact}}" ><span class="label" th:text="#{view.index.contact}"></span></a></li>
+                <li><a href="/experience"><span class="label" th:text="#{view.index.experience}"></span></a></li>
+                <li><a href="/skills"><span class="label" th:text="#{view.index.skills}"></span></a></li>
+                <li><a href="/projects"><span class="label" th:text="#{view.index.projects}"></span></a></li>
+                <li><a href="/contact"><span class="label" th:text="#{view.index.contact}"></span></a></li>
             </ul>
             <ul class="copyright">
                 <li th:text="#{view.index.copyright}"></li>

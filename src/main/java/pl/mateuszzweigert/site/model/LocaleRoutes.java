@@ -1,7 +1,6 @@
 package pl.mateuszzweigert.site.model;
 
 import com.google.common.collect.Lists;
-import pl.mateuszzweigert.site.common.Routes;
 
 import java.util.List;
 import java.util.Locale;
@@ -15,19 +14,11 @@ public class LocaleRoutes {
 
     private String currentPage;
     private String lang;
-    private String home;
-    private String skills;
-    private String projects;
-    private String contact;
 
     public LocaleRoutes(Locale locale, String currentPage) {
         this.lang = resolveLang(locale);
         String langUrl = resolveUrl(this.lang);
         this.currentPage = currentPage + langUrl;
-        this.home = Routes.HOME_1 + langUrl;
-        this.skills = Routes.SKILLS + langUrl;
-        this.projects = Routes.PROJECTS + langUrl;
-        this.contact = Routes.CONTACT + langUrl;
     }
 
     private String resolveUrl(String lang) {
@@ -54,43 +45,8 @@ public class LocaleRoutes {
         this.lang = lang;
     }
 
-    public String getHome() {
-        return home;
-    }
-
-    public void setHome(String home) {
-        this.home = home;
-    }
-
-    public String getSkills() {
-        return skills;
-    }
-
-    public void setSkills(String skills) {
-        this.skills = skills;
-    }
-
-    public String getProjects() {
-        return projects;
-    }
-
-    public void setProjects(String projects) {
-        this.projects = projects;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
     public String getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(String currentPage) {
-        this.currentPage = currentPage;
-    }
 }
