@@ -13,5 +13,10 @@
 
 `mvn spring-boot:run`
 
-#### Default app port : 80
-`http:localhost:80`
+#### Default app port : 8080
+`http:localhost:8080`
+
+#### Run in production environment:
+
+`mvn clean install`
+`java -jar target/mateuszzweigert.pl.war --server.port.http=YOUR_PORT`
