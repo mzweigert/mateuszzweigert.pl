@@ -1,6 +1,7 @@
 package pl.mateuszzweigert.config;
 
 import org.apache.coyote.http2.Http2Protocol;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
@@ -17,6 +18,9 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @ComponentScan(basePackageClasses = Application.class)
 class ApplicationConfig {
 
+    @Value("${server.port.http}")
+    private int serverPortHttp;
+
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
@@ -27,7 +31,7 @@ class ApplicationConfig {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
         factory.addConnectorCustomizers((connector -> {
             connector.addUpgradeProtocol(new Http2Protocol());
-            connector.setPort(80);
+            connector.setPort(serverPortHttp);
         }));
         return factory;
     }
