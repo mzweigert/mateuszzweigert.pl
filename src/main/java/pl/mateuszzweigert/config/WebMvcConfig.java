@@ -1,7 +1,5 @@
 package pl.mateuszzweigert.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -94,7 +92,7 @@ class WebMvcConfig implements WebMvcConfigurer {
     static class FaviconController {
         @RequestMapping("favicon.ico")
         String favicon() {
-            return "forward:/resources/images/favicon.ico";
+            return "forward:/resources/images/favicon.png";
         }
     }
 }
