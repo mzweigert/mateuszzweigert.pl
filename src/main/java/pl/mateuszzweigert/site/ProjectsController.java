@@ -1,15 +1,14 @@
 package pl.mateuszzweigert.site;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import pl.mateuszzweigert.site.common.Routes;
 import pl.mateuszzweigert.site.common.Views;
 
 @Controller
 public class ProjectsController {
 
-    @RequestMapping(value = Routes.PROJECTS, method = RequestMethod.GET)
+    @GetMapping(value = Routes.PROJECTS)
     public String projects() {
         return Views.PROJECTS_VIEW;
     }
