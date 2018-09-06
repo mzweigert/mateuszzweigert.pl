@@ -8,8 +8,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 import pl.mateuszzweigert.site.common.Routes;
 import pl.mateuszzweigert.site.common.Views;
 
@@ -28,7 +27,7 @@ class CustomErrorController implements ErrorController {
     /**
      * Display an error page, as defined in web.xml <code>custom-error</code> element.
      */
-    @RequestMapping(Routes.ERROR)
+    @GetMapping(Routes.ERROR)
     public String error(HttpServletRequest request, Model model) {
         // retrieve some useful information from the request
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");

@@ -13,8 +13,12 @@ public class MailSender {
     @Value("${email.username}")
     private String USERNAME;
 
+    private final JavaMailSender javaMailSender;
+
     @Autowired
-    public JavaMailSender javaMailSender;
+    public MailSender(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     public boolean sendMail(Mail mail) {
         SimpleMailMessage message = new SimpleMailMessage();

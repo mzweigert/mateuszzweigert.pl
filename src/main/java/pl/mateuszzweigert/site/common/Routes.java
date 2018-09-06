@@ -9,4 +9,5 @@ public class Routes {
     public static final String PROJECTS = "/projects";
     public static final String CONTACT = "/contact";
     public static final String ERROR = "/error";
+    public static final String ENDPOINTS = "/endpoints";
 }
