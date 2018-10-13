@@ -9,31 +9,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.mateuszzweigert.site.common.Routes;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ProjectsControllerTest {
-
-    @Autowired
-    private ProjectsController controller;
+public class ProjectsControllerTest extends AbstractContextLoadTest<ProjectsController> {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testContextLoads() {
-        assertThat(controller).isNotNull();
-    }
-
-    @Test
-    public void testProjectsRoute() throws Exception {
+    public void projectsRoute() throws Exception {
         this.mockMvc.perform(get(Routes.PROJECTS))
-                .andDo(print())
                 .andExpect(status().isOk());
     }
 }
