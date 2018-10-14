@@ -3,11 +3,13 @@ package pl.mateuszzweigert.config.prod;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.mateuszzweigert.config.Environment;
@@ -21,13 +23,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ActiveProfiles(Environment.PROD)
 @AutoConfigureMockMvc
+@TestPropertySource(locations="classpath:mock_db.properties")
 public class SecurityConfigProdTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Value("${spring.security.user.roles}")
-    private String ROLE;
 
     @Test
     public void testEndpointsRoute_withoutAuth_thenUnauthorized() throws Exception {
