@@ -15,22 +15,17 @@ import pl.mateuszzweigert.site.common.Routes;
 import pl.mateuszzweigert.site.model.Mail;
 import pl.mateuszzweigert.site.support.web.MailSender;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ContactControllerTest {
-
-    @Autowired
-    private ContactController controller;
+public class ContactControllerTest extends AbstractContextLoadTest<ContactController> {
 
     @Autowired
     private MockMvc mockMvc;
@@ -39,19 +34,13 @@ public class ContactControllerTest {
     private MailSender mailSender;
 
     @Test
-    public void testContextLoads() {
-        assertThat(controller).isNotNull();
-    }
-
-    @Test
-    public void testContactRoute() throws Exception {
+    public void contactRoute() throws Exception {
         this.mockMvc.perform(get(Routes.CONTACT))
-                .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void testSendContactFormWithCSRF_whenMailCorrect_thenSuccessSend() throws Exception {
+    public void givenCorrectMail_whenSendContactFormWithCSRF_thenSuccessSend() throws Exception {
         Mail mail = createMail("test@test", RandomString.make(15),
                 RandomString.make(15), RandomString.make(15));
 
@@ -63,7 +52,16 @@ public class ContactControllerTest {
     }
 
     @Test
-    public void testSendContactFormWithCSRF_whenMailerNotWorking_thenFailedSend() throws Exception {
+    public void givenIncorrectMail_whenSendContact_thenFailedSend() throws Exception {
+        Mail mail = createMail("", "", "", "");
+
+        this.mockMvc.perform(fillPOSTRequestWithMail(mail)
+                .with(csrf()))
+                .andExpect(status().isNotAcceptable());
+    }
+
+    @Test
+    public void givenNotWorkingMailer_whenSendContactFormWithCSRF_thenFailedSend() throws Exception {
         Mail mail = createMail("test@test", RandomString.make(15),
                 RandomString.make(15), RandomString.make(15));
 
@@ -75,21 +73,12 @@ public class ContactControllerTest {
     }
 
     @Test
-    public void testSendContactOutside_whenNoAuth_thenFailedSend() throws Exception {
+    public void givenNoAuth_SendContactOutside_thenFailedSend() throws Exception {
         Mail mail = createMail("test@test", RandomString.make(15),
                 RandomString.make(15), RandomString.make(15));
 
         this.mockMvc.perform(fillPOSTRequestWithMail(mail))
                 .andExpect(status().isForbidden());
-    }
-
-    @Test
-    public void testSendContact_whenMailIsIncorrect_thenFailedSend() throws Exception {
-        Mail mail = createMail("", "", "", "");
-
-        this.mockMvc.perform(fillPOSTRequestWithMail(mail)
-                .with(csrf()))
-                .andExpect(status().isNotAcceptable());
     }
 
     private Mail createMail(String email, String name, String subject, String content) {
@@ -101,7 +90,7 @@ public class ContactControllerTest {
         return mail;
     }
 
-    private MockHttpServletRequestBuilder fillPOSTRequestWithMail(Mail mail) throws Exception {
+    private MockHttpServletRequestBuilder fillPOSTRequestWithMail(Mail mail) {
         return post(Routes.CONTACT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .param("email", mail.getEmail())

@@ -26,7 +26,7 @@ public class MailSenderTest {
     private JavaMailSender javaMailSender;
 
     @Test
-    public void testSendMailSuccess() {
+    public void sendMailSuccess() {
         //GIVEN
         Mail mail = new Mail();
 
@@ -39,7 +39,7 @@ public class MailSenderTest {
 
 
     @Test
-    public void testSendMailFail() {
+    public void sendMailFail() {
         //GIVEN
         Mail mail = new Mail();
 

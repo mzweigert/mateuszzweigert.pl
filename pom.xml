@@ -7,7 +7,7 @@
     <groupId>mateuszzweigert.pl</groupId>
     <artifactId>mateuszzweigert.pl</artifactId>
     <packaging>war</packaging>
-    <version>2.1</version>
+    <version>2.2</version>
     <name>mateuszzweigert.pl</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,6 +22,7 @@
         <relativePath/>
     </parent>
     <dependencies>
+        <!-- WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -30,6 +31,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
+        <!-- ENDPOINTS -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -39,14 +42,48 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <!-- SECURITY -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <!-- MAIL -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+
+        <!-- DATABASE -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- DB for dev/test-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <!-- DB for prod-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
+
+        <!-- FIX JAVA 9+ Invocation of init method failed; nested exception
+        is java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+            <optional>true</optional>
+        </dependency>
+        <!-- TEST -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -81,6 +118,15 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
