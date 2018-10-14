@@ -11,12 +11,14 @@ import pl.mateuszzweigert.config.Environment;
 @Profile(Environment.DEV)
 public class SecurityConfigDev extends WebSecurityConfigurerAdapter {
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests()
-				.requestMatchers(EndpointRequest.toAnyEndpoint())
-				.permitAll();
-	}
+        http.authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
+                .and().authorizeRequests().antMatchers("/h2/**").permitAll()
+                .and().csrf().ignoringAntMatchers("/h2/**")
+                .and().headers().frameOptions().sameOrigin();
+
+    }
 
 }
