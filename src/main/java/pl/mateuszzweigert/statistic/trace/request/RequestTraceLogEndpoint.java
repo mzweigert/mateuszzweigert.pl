@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.validation.ConstraintViolation;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -78,12 +79,23 @@ public class RequestTraceLogEndpoint {
     private RequestTraceLog persistLog(RequestTraceLog log) {
         String requestURI = log.getRequestUri();
         HttpMethod method = log.getMethod();
-        RequestTraceLog existing = traceLogRepository.findByRequestUriAndMethod(requestURI, method);
-        if (existing != null) {
-            existing.incrementVisitedCount();
-            log = existing;
+        List<RequestTraceLog> possibleDuplicates = traceLogRepository.findByRequestUriAndMethod(requestURI, method);
+        if(!possibleDuplicates.isEmpty()) {
+            log = removeDuplicatesAndReturnUnique(possibleDuplicates);
+            log.incrementVisitedCount();
         }
         return traceLogRepository.save(log);
+    }
+
+    private RequestTraceLog removeDuplicatesAndReturnUnique(List<RequestTraceLog> possibleDuplicates) {
+        logger.error("Found duplicates request trace logs : " + possibleDuplicates.toString());
+        if(possibleDuplicates.size() > 1) {
+            possibleDuplicates.sort(RequestTraceLog.getFieldComparator("saveTime").reversed());
+            List<RequestTraceLog> toRemove = possibleDuplicates.subList(1, possibleDuplicates.size());
+            logs.removeAll(toRemove);
+            traceLogRepository.deleteAll(toRemove);
+        }
+        return possibleDuplicates.get(0);
     }
 
     private Set<RequestTraceLog> reorganizeMemoryLogs(RequestTraceLog log) {
