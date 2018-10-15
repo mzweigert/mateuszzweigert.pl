@@ -8,6 +8,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -25,11 +27,11 @@ public class RequestTraceLogRepositoryTest {
         HttpMethod method = HttpMethod.OPTIONS;
 
         // WHEN
-        RequestTraceLog result = repository.findByRequestUriAndMethod(requestUri, method);
+        List<RequestTraceLog> result = repository.findByRequestUriAndMethod(requestUri, method);
 
         // THEN
-        assertThat(result).isNotNull();
-        assertThat(result.getVisitedCount()).isEqualTo(5);
+        assertThat(result).isNotEmpty();
+        assertThat(result.get(0).getVisitedCount()).isEqualTo(5);
     }
 
     @Test
@@ -40,9 +42,9 @@ public class RequestTraceLogRepositoryTest {
         HttpMethod method = HttpMethod.OPTIONS;
 
         // WHEN
-        RequestTraceLog result = repository.findByRequestUriAndMethod(requestUri, method);
+        List<RequestTraceLog> result = repository.findByRequestUriAndMethod(requestUri, method);
 
         // THEN
-        assertThat(result).isNull();
+        assertThat(result).isEmpty();
     }
 }

@@ -159,8 +159,9 @@ public class RequestTraceLogEndpointTest {
         //THEN
         Set<RequestTraceLog> all = this.endpoint.getAll();
         assertThat(all).contains(log);
-        RequestTraceLog inRepository = requestTraceLogRepository.findByRequestUriAndMethod(log.getRequestUri(), log.getMethod());
-        assertThat(inRepository).isNotNull();
+        List<RequestTraceLog> inRepository = requestTraceLogRepository.findByRequestUriAndMethod(log.getRequestUri(), log.getMethod());
+        assertThat(inRepository).isNotEmpty();
+        assertThat(inRepository).hasSize(1);
     }
 
     @Test
@@ -173,9 +174,28 @@ public class RequestTraceLogEndpointTest {
 
         //THEN
         Set<RequestTraceLog> all = this.endpoint.getAll();
-        existing = requestTraceLogRepository.findByRequestUriAndMethod("requestURI1", HttpMethod.GET);
-        assertThat(all).contains(existing);
-        assertThat(previousVisitedCount).isLessThan(existing.getVisitedCount());
+        List<RequestTraceLog> existingList = requestTraceLogRepository.findByRequestUriAndMethod("requestURI1", HttpMethod.GET);
+        assertThat(all).contains(existingList.get(0));
+        assertThat(previousVisitedCount).isLessThan(existingList.get(0).getVisitedCount());
+    }
+
+    @Test
+    public void addToLogs_whenLogIsDuplicated() {
+        //GIVEN
+        RequestTraceLog existing = new RequestTraceLog("requestURI1", HttpMethod.GET);
+        requestTraceLogRepository.save(new RequestTraceLog("requestURI1", HttpMethod.GET));
+        requestTraceLogRepository.save(new RequestTraceLog("requestURI1", HttpMethod.GET));
+        requestTraceLogRepository.save(new RequestTraceLog("requestURI1", HttpMethod.GET));
+
+        Long previousVisitedCount = existing.getVisitedCount();
+        //WHEN
+        this.endpoint.addToLogs(existing);
+
+        //THEN
+        Set<RequestTraceLog> all = this.endpoint.getAll();
+        List<RequestTraceLog> existingList = requestTraceLogRepository.findByRequestUriAndMethod("requestURI1", HttpMethod.GET);
+        assertThat(all).contains(existingList.get(0));
+        assertThat(previousVisitedCount).isLessThan(existingList.get(0).getVisitedCount());
     }
 
     @Test(expected = IllegalArgumentException.class)
