@@ -1,6 +1,7 @@
 package pl.mateuszzweigert.statistic.trace.http;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.trace.http.HttpExchangeTracer;
 import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
 import org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter;
@@ -11,17 +12,18 @@ import org.springframework.util.ResourceUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
 public class PersistHttpTraceFilter extends HttpTraceFilter {
 
     private static String[] excludedPaths = new String[]{"/favicon.ico", "/resources/**", "/endpoints/**", "/h2/**"};
+
+    @Value("${domain.name}")
+    private String domainName;
 
     @Autowired
     public PersistHttpTraceFilter(HttpTraceRepository repository, HttpExchangeTracer tracer) {
@@ -46,9 +48,10 @@ public class PersistHttpTraceFilter extends HttpTraceFilter {
         }
     }
 
-	@Override
-	public boolean shouldNotFilter(HttpServletRequest request){
-		return Arrays.stream(excludedPaths)
-				.anyMatch(e -> new AntPathMatcher().match(e, request.getServletPath()));
-	}
+    @Override
+    public boolean shouldNotFilter(HttpServletRequest request) {
+        return request.getRequestURL().toString().contains(domainName) &&
+                Arrays.stream(excludedPaths)
+                        .anyMatch(e -> new AntPathMatcher().match(e, request.getServletPath()));
+    }
 }
