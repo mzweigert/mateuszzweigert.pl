@@ -52,7 +52,6 @@ public class RequestTraceLogEndpointTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
         this.endpoint.init();
         initMapper();
-
     }
 
     private void initMapper() {
