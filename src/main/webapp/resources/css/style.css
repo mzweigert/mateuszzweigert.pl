@@ -1123,6 +1123,10 @@ body.index #main {
 	text-align: center;
 }
 
+.display-flex {
+    display: flex;
+}
+
 .alert {
 	max-width: 70%;
 	min-height: 2em;
@@ -1160,4 +1164,20 @@ body.index #main {
 	font-size:30px;
 	line-height: normal;
 	text-align: justify;
+}
+
+.privacy-policy ul.left-list {
+    list-style: circle;
+    text-align: left;
+    margin-left: 1.5em;
+}
+
+.privacy-policy h1 {
+   font-size: 2em;
+   letter-spacing: 0.1em;
+}
+
+.privacy-policy h2 {
+   font-size: 1.5em;
+   letter-spacing: 0.1em;
 }
