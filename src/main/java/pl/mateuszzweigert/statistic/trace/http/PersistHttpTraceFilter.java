@@ -5,17 +5,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.trace.http.HttpExchangeTracer;
 import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
 import org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.util.ResourceUtils;
+import org.springframework.util.FileCopyUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import java.io.File;
 
 @Component
 public class PersistHttpTraceFilter extends HttpTraceFilter {
@@ -33,10 +35,11 @@ public class PersistHttpTraceFilter extends HttpTraceFilter {
 
     private void readExcludedPathsFromFile() {
         try {
-            File file = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "request_logs_blacklist");
-            List<String> content = Files.readAllLines(file.toPath());
+            ClassPathResource cpr = new ClassPathResource("/request_logs_blacklist.txt");
+            byte[] bytes = FileCopyUtils.copyToByteArray(cpr.getInputStream());
+            String content = new String(bytes, StandardCharsets.UTF_8);
             if (!content.isEmpty()) {
-                String[] excludedFromFile = String.join("", Files.readAllLines(file.toPath())).split("\\s*(,|\\s)\\s*");
+                String[] excludedFromFile = String.join("", content).split("\\s*(,|\\s)\\s*");
                 excludedPaths = Stream.concat(Arrays.stream(excludedPaths), Arrays.stream(excludedFromFile))
                         .distinct()
                         .toArray(String[]::new);
