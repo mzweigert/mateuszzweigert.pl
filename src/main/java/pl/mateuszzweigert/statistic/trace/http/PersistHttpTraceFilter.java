@@ -13,11 +13,8 @@ import org.springframework.util.FileCopyUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
-import java.io.File;
 
 @Component
 public class PersistHttpTraceFilter extends HttpTraceFilter {
